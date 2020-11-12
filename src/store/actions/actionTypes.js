@@ -1,0 +1,4 @@
+export const TIMESECOND = 'TIMESECOND'
+export const TIMEFIRST = 'TIMEFIRST'
+export const FIRSTBELT = 'FIRSTBELT'
+export const SECONDBELT = 'SECONDBELT'

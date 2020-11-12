@@ -1,0 +1,100 @@
+$black: #000;
+$grey: rgb(235,235,235);
+$size: 178px;
+$white: #fff;
+$feature : #4b9aaa;
+
+html,
+body {
+    height: 100%;
+}
+body {
+    background: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    color: white;
+}
+
+p {
+    color: $white;
+    font-size: 0.8em;
+    opacity: 0.75;
+}
+
+.clock {
+    height: $size;
+    border: 1px solid $black;
+    width: $size;
+    background: $grey;
+    padding: 10px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 0;
+    &__second,
+    &__minute,
+    &__hour, &__indicator {
+        position: absolute;
+        width: 2px;
+        transform-origin: bottom center;
+        z-index: 2;
+        border-radius: 1px;
+    }
+    &__second {
+        height: #{($size / 2)};
+        background: $black;
+        animation: time 60s infinite steps(60);
+        z-index: 3;
+    }
+    &__minute {
+        padding: #{($size / 2) - 10} 0 0;
+        margin-top: 10px;
+        opacity: 0.75;
+
+        width: 6px;
+        animation: time 3600s linear infinite;
+        &:before{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-bottom: #{($size / 2) - 10} solid $black
+        }
+    }
+    &__hour {
+        padding: #{($size / 2) - 50} 2px 0;
+        margin-top: 50px;
+        animation: time 43200s linear infinite;
+        &:before{
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-bottom: #{($size / 2) - 50} solid $black
+        }
+    }
+    &__indicator {
+        height: #{($size / 2) - 2};
+        border-top: 2px solid $black;
+        background: none;
+    }
+    &__indicator{
+        opacity: 1;
+        height: #{($size / 2) - 7};
+        border-top: 7px solid $black;
+    }
+}
+
+@for $i from 1 through 12 {
+    section:nth-of-type(#{$i}) {
+        transform: rotateZ(calc(30deg * #{$i}));
+    }
+}
